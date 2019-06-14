@@ -8,7 +8,7 @@
     "prestart": "npm run build",
     "start:dev": "nodemon --exec babel-node src/index.js",
     "build": "babel src/ -d dist/",
-    "test": "mocha test/ --recursive -r @babel/register -r @babel/polyfill"
+    "test": "NODE_ENV=test nyc --reporter=text mocha test/ --recursive -r @babel/register -r @babel/polyfill"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,10 @@
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.3",
-    "mocha": "^6.1.4"
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1"
+  },
+  "dependencies": {
+    "path-to-regexp": "^3.0.0"
   }
 }
