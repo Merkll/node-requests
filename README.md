@@ -134,7 +134,7 @@ Note: Other parameters can be passed in to the app and can be retrieved from the
 ## License
 MIT License
 
-Copyright (c) 2019 Merkll
+Copyright (c) 2019 toluwase
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
