@@ -20,15 +20,22 @@ cache:
 after_success:
 - npm run coveralls
 - npm run coverage
+- npm run build #make a dist folder
 after_script:
 - "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
+
+before_deploy:
+  - cp package.json dist/
+  - cd dist
 deploy:
   provider: npm
-  local_dir: dist
+  skip_cleanup: true
   email:
     secure: WVozh2pe7ksJ2IftPj4kEOQh3FqqFt+N8qZimyoq3/efT+0JdYUc3WIm8Qu6cVbERy5ZOrLKtGBebkJ/L5o50OWYQ6rLtGt2zVSPZUuHBd25wc9D/xBKgVUNS947eEi3E/26HI1bTLaD9MGjkLa2tJHBb0vp1+P1Eh16P/1jjc65U9vt7xeOvE06zEtF/4WXUyaj+A7sjc0wDg4+pVkkhKbXuGk1klTmT+/XEexvLZHgC9jh9Txj+643hN9JDZHxMARCU9cS+e0MTxVCye6zoc3U/tp8FctnY8iDv2QOy/ak7AHPQl1g1d297ShAh4w2FQAPELQFWl+0a0d9m9yHInkhHYzj0dCrZMLwLdSBzNIZycNyDyZtY27yN4F0gj5DjAhdo3uAegtUDL8nvS7T2M4kJMQaOt8b36fQOmaBkC8xoYaTngY7F8S8la5u+3BaIisAk6mAlF5NUbanboy4riiQ4ft8X2LIgTfSMBIHOd7vCfIR+7ajumY0VrcnTbzxKgSmRj+gDqqv4C2PGoCYCowH+ShP+z680bl/Sk3XFFEJB46KRVlRcgmRbZbrn+uJ6yyP3BrC2t93yho+b6fWcb8OPDYENT2XW2sELgn2cp3rpiGyT8rgkFqNswvLAMAXE68ZL5JOqY47yKq08BZFuhRDBgWAIy/a7Sloe9RJvvY=
   api_key:
     secure: AtJNrZIE4kMwYXjsLi6VMkNXYDvCXO1NUcNI4E3WG3tTWzzd/fwtb4e78s5NegFmeW/XK6T4lJZ9t/okpLlpjnT19SCGKeR3hmJZ3h1w/ppwhnAA6RcTCgmR2j8Odf95TkZFBVleGx7XgkGN8ranJqYL19ex6vMkpida7yQwqaibMB5laLpOLC7EZu6bxcV9/GMIfQlZnmVR/iZZXfetaIAQj1nZzzWtFUVcy9PRc7Sfo2y1mLbuXV2Sl2SCYHp20w2FdfRwBYQ5yDWtgvk2onKVuM9Y1+F3wr+y6HkEOiMvZ+t0IoNyP+85qFhy//8EzQ3sKofQ8mCAUTImn+d7MYw3GcX7tYsuA68PPulrU043502Mw7fYN2Mu5QkXRJjTdPtOUhsr8TmI2dCrb5mFjRlkcVKUy9sDeVSLlK623/xFU1oPqylxh9/4NcYf0JSgkHEBrdOFwippuNRTE+aXZM4oLeIcONDsfjOc9hElmtlQ5JGJ1ohyLiq/lHTqe1CyogD6eLcXYfNzsxo45lZproPgWn2Iho7UB3Z5zgxW2krv/nAl+m89Gg18LpMQoeKgdnrcX4R4qc9GPAy3GPaXmqXdihn8WD1tuugdcIK0zloiaOBfyL4m5XiKMZCDtQ0VPuszu5jFWq7E4GEoWEpxonslopeTQZ97YzFsLEasgeg=
   on:
-    branch: master
-  skip_cleanup: true
+    branch: 
+      master
+      npm-publish
+
