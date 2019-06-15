@@ -6,6 +6,7 @@ class NodeReq {
   constructor() {
     Private.set(this, {
       mode: null,
+      middlewares: [],
       setMode: (mode = null) => { Private.get(this).mode = mode; },
       setRouter: (router) => { Private.get(this).router = this.router || router; },
     });
@@ -19,9 +20,11 @@ class NodeReq {
     return Private.get(this).router;
   }
 
-  async handleRequest(req, ...others) {
+  async handlePathRequest(req, ...others) {
     const request = req;
-    const { path, method = 'get' } = req;
+    const { path } = req;
+    let { method = 'get' } = req;
+    method = method.toLowerCase();
     const pathData = this.router.match(path);
     if (!pathData) return null;
     const handler = pathData.handlers[method];
@@ -31,10 +34,39 @@ class NodeReq {
     return data[data.length - 1];
   }
 
+  async handleRequest(req, ...others) {
+    const data = await this.executeMiddlewares(req, ...others);
+    return data;
+  }
+
   // eslint-disable-next-line class-methods-use-this
   async executeHandlers(handlers, ...data) {
     const returnedData = handlers.map(handler => handler(...data));
     return Promise.all(returnedData);
+  }
+
+  executeMiddlewares(req, ...others) {
+    return new Promise(async (resolve, reject) => {
+      const { middlewares } = this.router;
+      let currentMiddlewareIndex = 0;
+
+      const done = async (err) => {
+        if (err) reject(new Error(err));
+        currentMiddlewareIndex += 1;
+        // eslint-disable-next-line no-use-before-define
+        const data = await callMiddleware();
+        return data;
+      };
+
+      const callMiddleware = async () => {
+        if (!middlewares[currentMiddlewareIndex]) {
+          return resolve(await this.handlePathRequest(req, ...others));
+        }
+        const data = await middlewares[currentMiddlewareIndex](req, done, ...others);
+        return data;
+      };
+      await callMiddleware();
+    });
   }
 
   // registers nodeReq mode

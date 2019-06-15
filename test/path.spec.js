@@ -70,4 +70,11 @@ describe('NodePath', () => {
       expect(path).to.not.be.null;
     });
   });
+
+  describe('Middleware', () => {
+    it('Should add middleares', () => {
+      NodePath.use(() => {});
+      expect(NodePath.middlewares).to.not.be.empty;
+    });
+  });
 });

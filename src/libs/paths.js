@@ -6,6 +6,8 @@ class NodePath {
   constructor() {
     Private.set(this, {
       paths: {},
+      middlewares: [],
+      addMiddleware: (middleware) => { Private.get(this).middlewares.push(middleware); },
     });
   }
 
@@ -31,6 +33,10 @@ class NodePath {
       if (matchData[i + 1]) params[data.name] = matchData[i + 1];
       return params;
     }, {});
+  }
+
+  get middlewares() {
+    return Private.get(this).middlewares;
   }
 
   // maps path to registered action
@@ -68,6 +74,12 @@ class NodePath {
   // all other requests
   all(path, ...handlers) {
     this.addPathActions(path, 'all', ...handlers);
+    return this;
+  }
+
+  // add middlewares
+  use(middleware) {
+    Private.get(this).addMiddleware(middleware);
     return this;
   }
 }

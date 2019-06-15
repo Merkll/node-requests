@@ -39,4 +39,21 @@ describe('NodeReq', () => {
       expect(params.id).to.eql('45');
     });
   });
+
+  describe('Router Middleware', () => {
+    it('should add middlewares', async () => {
+      NodeReq.Router()
+        .use((req, done) => {
+          done();
+        })
+        .use((req, done) => {
+          done();
+        });
+      expect(NodeReq.Router().middlewares).to.have.length(2);
+    });
+    it('should excute middlewares', async () => {
+      const executed = await NodeReq.executeMiddlewares({});
+      expect(executed).to.not.be.undefined;
+    });
+  });
 });
