@@ -29,6 +29,14 @@ describe('NodeReq', () => {
       expect(data).to.not.be.undefined;
       expect(data).to.eql('Hello 45');
     });
+    it('should default to all request handler', async () => {
+      NodeReq.Router()
+        .get('/user/:id', req => `Hello ${req.params.id}`)
+        .all('/user/:id', () => 'Method not allowed');
+      const data = await NodeReq.register('express')({ path: '/user/45', method: 'post' });
+      expect(data).to.not.be.undefined;
+      expect(data).to.eql('Method not allowed');
+    });
     it('should add params to existing req params', async () => {
       NodeReq.Router().get('/user/:id', req => `Hello ${req.params.id}`, () => 'Last handler');
       const request = { path: '/user/45', params: { name: 'Josh' } };
@@ -52,8 +60,19 @@ describe('NodeReq', () => {
       expect(NodeReq.Router().middlewares).to.have.length(2);
     });
     it('should excute middlewares', async () => {
-      const executed = await NodeReq.executeMiddlewares({});
+      const executed = await NodeReq.executeMiddlewares({}, () => {});
       expect(executed).to.not.be.undefined;
+    });
+    it('should be rejected', (done) => {
+      NodeReq.Router()
+        .use((req, next) => {
+          next('Error');
+        });
+      NodeReq.executeMiddlewares({}, () => {})
+        .catch((err) => {
+          expect(err).to.not.be.undefined;
+          return done();
+        });
     });
   });
 });

@@ -31,6 +31,26 @@ describe('NodePath', () => {
     });
   });
 
+  describe('Put', () => {
+    it('Should register post request', () => {
+      const data = NodePath.put('/', () => {});
+      expect(data).to.be.eql(NodePath);
+    });
+    it('Should throw error if no handler is specified', () => {
+      expect(() => NodePath.put('/')).to.throw();
+    });
+  });
+
+  describe('Patch', () => {
+    it('Should register post request', () => {
+      const data = NodePath.patch('/', () => {});
+      expect(data).to.be.eql(NodePath);
+    });
+    it('Should throw error if no handler is specified', () => {
+      expect(() => NodePath.patch('/')).to.throw();
+    });
+  });
+
   describe('All', () => {
     it('Should register handler for all requests', () => {
       const data = NodePath.all('/', () => {});
