@@ -1,4 +1,4 @@
-# Node-Request
+# Node-Requests
 [![Build Status](https://travis-ci.org/Merkll/node-requests.svg?branch=develop)](https://travis-ci.org/Merkll/node-requests) [![Coverage Status](https://coveralls.io/repos/github/Merkll/node-requests/badge.svg?branch=develop)](https://coveralls.io/github/Merkll/node-requests?branch=develop) [![Maintainability](https://api.codeclimate.com/v1/badges/6f999e00dc9ab8c22795/maintainability)](https://codeclimate.com/github/Merkll/node-requests/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/6f999e00dc9ab8c22795/test_coverage)](https://codeclimate.com/github/Merkll/node-requests/test_coverage)
 
 An npm module for generic Node.js requests handling. This module was inspired to be use with AWS lambda function while allowing easy integration with server frameworks. This module has been tested and works with express.js.
@@ -22,17 +22,17 @@ Ensure you have Node.js and npm installed
 ```
 
 ### Installing as Npm module
-```npm i node-request ``` 
+```npm i node-requests ``` 
 
 ### Installing For testing and development
-Clone this project ```git clone https://github.com/Merkll/.git```
+Clone this project ```git clone https://github.com/Merkll/node-requests.git```
 Run ```npm install``` to install all dependencies
 
 ## Using alone
 
 * ### ES6
 ```
-import NodeRequest from 'node-request';
+import NodeRequest from 'node-requests';
 
 const Router = NodeRequest.Router(); // the router
 const app = NodeRequest.register(); // the request handler
@@ -53,7 +53,7 @@ entry({ path: '/user/Kehinde', method: 'get' });
 
 * ### ES5
 ```
-const NodeRequest = require('node-request');
+const NodeRequest = require('node-requests');
 
 const Router = NodeRequest.Router(); // the router 
 const app = NodeRequest.register(); // the request handler
@@ -76,7 +76,7 @@ entry({ path: '/user/Kehinde', method: 'get' });
 
 * ### ES6
 ```
-import NodeRequest from 'node-request';
+import NodeRequest from 'node-requests';
 import express from 'express';
 
 const app = express();
@@ -100,7 +100,7 @@ export default app.listen(port, () => {
 
 * ### ES5
 ```
-const NodeRequest = require('node-request');
+const NodeRequest = require('node-requests');
 const express = require('exress');
 
 const app = express();
