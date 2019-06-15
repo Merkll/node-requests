@@ -73,13 +73,13 @@ class NodePath {
 
   // put requests
   put(path, ...handlers) {
-    this.addPathActions(path, 'post', ...handlers);
+    this.addPathActions(path, 'put', ...handlers);
     return this;
   }
 
   // patch requests
   patch(path, ...handlers) {
-    this.addPathActions(path, 'post', ...handlers);
+    this.addPathActions(path, 'patch', ...handlers);
     return this;
   }
 
