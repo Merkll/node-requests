@@ -1,6 +1,6 @@
 export default class {
   static modifyRequest(req) {
-    const { pathParameters, path, httpMethod } = req;
+    const { pathParameters, path, httpMethod = 'get' } = req;
     let { body, queryStringParameters } = req;
     try {
       body = JSON.parse(body);
