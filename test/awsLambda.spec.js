@@ -48,5 +48,15 @@ describe('AWS-lambda', () => {
       const data = awsLambda.modifyRequest(req);
       expect(data.method).to.be.eql('get');
     });
+    it('method should default to get', () => {
+      const req = {
+        queryStringParameters: null,
+        path: '/project/progress/323',
+        pathParameters: null,
+        body: null,
+      };
+      const data = awsLambda.modifyRequest(req);
+      expect(data.method).to.be.eql('get');
+    });
   });
 });
