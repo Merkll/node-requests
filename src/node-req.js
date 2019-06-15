@@ -27,7 +27,7 @@ class NodeReq {
     method = method.toLowerCase();
     const pathData = this.router.match(path);
     if (!pathData) return null;
-    const handler = pathData.handlers[method];
+    const handler = pathData.handlers[method] || pathData.handlers.all;
     request.params = request.params ? { ...request.params, ...pathData.params } : pathData.params;
     if (!handler) return null;
     const data = await this.executeHandlers(handler, request, ...others);
