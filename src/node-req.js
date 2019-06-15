@@ -1,4 +1,5 @@
 import NodePath from './libs/paths';
+import awsLambda from './libs/aws-lambda';
 
 const Private = new WeakMap();
 
@@ -6,6 +7,9 @@ class NodeReq {
   constructor() {
     Private.set(this, {
       mode: null,
+      modeHandlers: {
+        'aws-lambda': awsLambda,
+      },
       middlewares: [],
       setMode: (mode = null) => { Private.get(this).mode = mode; },
       setRouter: (router) => { Private.get(this).router = this.router || router; },
@@ -34,8 +38,15 @@ class NodeReq {
     return data[data.length - 1];
   }
 
+  modifyRequest(req) {
+    const handler = Private.get(this).modeHandlers[this.mode];
+    if (handler) return handler.modifyRequest(req);
+    return req;
+  }
+
   async handleRequest(req, ...others) {
-    const data = await this.executeMiddlewares(req, ...others);
+    const request = this.modifyRequest(req);
+    const data = await this.executeMiddlewares(request, ...others);
     return data;
   }
 

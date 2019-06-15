@@ -75,4 +75,19 @@ describe('NodeReq', () => {
         });
     });
   });
+
+  describe('Modify request', () => {
+    it('Should modify request', () => {
+      const req = {
+        queryStringParameters: {},
+        path: '/project/progress/323',
+        pathParameters: {},
+        httpMethod: 'GET',
+        body: {},
+      };
+      NodeReq.register('aws-lambda');
+      const data = NodeReq.modifyRequest(req);
+      expect(data.method).to.be.eql('get');
+    });
+  });
 });
