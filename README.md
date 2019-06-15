@@ -1,5 +1,6 @@
 # Node-Request
 [![Build Status](https://travis-ci.org/Merkll/node-requests.svg?branch=develop)](https://travis-ci.org/Merkll/node-requests) [![Coverage Status](https://coveralls.io/repos/github/Merkll/node-requests/badge.svg?branch=develop)](https://coveralls.io/github/Merkll/node-requests?branch=develop) [![Maintainability](https://api.codeclimate.com/v1/badges/6f999e00dc9ab8c22795/maintainability)](https://codeclimate.com/github/Merkll/node-requests/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/6f999e00dc9ab8c22795/test_coverage)](https://codeclimate.com/github/Merkll/node-requests/test_coverage)
+
 An npm module for generic Node.js requests handling. This module was inspired to be use with AWS lambda function while allowing easy integration with server frameworks. This module has been tested and works with express.js.
 
 This allows request to be made like conventional function invocation.
