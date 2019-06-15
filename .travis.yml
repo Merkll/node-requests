@@ -35,7 +35,5 @@ deploy:
   api_key:
     secure: AtJNrZIE4kMwYXjsLi6VMkNXYDvCXO1NUcNI4E3WG3tTWzzd/fwtb4e78s5NegFmeW/XK6T4lJZ9t/okpLlpjnT19SCGKeR3hmJZ3h1w/ppwhnAA6RcTCgmR2j8Odf95TkZFBVleGx7XgkGN8ranJqYL19ex6vMkpida7yQwqaibMB5laLpOLC7EZu6bxcV9/GMIfQlZnmVR/iZZXfetaIAQj1nZzzWtFUVcy9PRc7Sfo2y1mLbuXV2Sl2SCYHp20w2FdfRwBYQ5yDWtgvk2onKVuM9Y1+F3wr+y6HkEOiMvZ+t0IoNyP+85qFhy//8EzQ3sKofQ8mCAUTImn+d7MYw3GcX7tYsuA68PPulrU043502Mw7fYN2Mu5QkXRJjTdPtOUhsr8TmI2dCrb5mFjRlkcVKUy9sDeVSLlK623/xFU1oPqylxh9/4NcYf0JSgkHEBrdOFwippuNRTE+aXZM4oLeIcONDsfjOc9hElmtlQ5JGJ1ohyLiq/lHTqe1CyogD6eLcXYfNzsxo45lZproPgWn2Iho7UB3Z5zgxW2krv/nAl+m89Gg18LpMQoeKgdnrcX4R4qc9GPAy3GPaXmqXdihn8WD1tuugdcIK0zloiaOBfyL4m5XiKMZCDtQ0VPuszu5jFWq7E4GEoWEpxonslopeTQZ97YzFsLEasgeg=
   on:
-    branch: 
-      master
-      npm-publish
+    branch: npm-publish
 
