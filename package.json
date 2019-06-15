@@ -1,10 +1,10 @@
 {
-  "name": "node-req",
+  "name": "node-requests",
   "version": "1.0.0",
   "description": "An npm module for generic requests. Enables route transformation for function execution",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/app ",
+    "start": "node index",
     "prestart": "npm run build",
     "start:dev": "nodemon --exec babel-node src/index.js",
     "build": "babel src/ -d dist/",
