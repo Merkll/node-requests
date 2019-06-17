@@ -26,6 +26,7 @@ after_script:
 
 before_deploy:
   - cp package.json dist/
+  - cp README.md dist/
   - cd dist
 deploy:
   provider: npm
