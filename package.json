@@ -1,6 +1,6 @@
 {
   "name": "node-requests",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An npm module for generic requests. Enables route transformation for function execution",
   "main": "index.js",
   "scripts": {
