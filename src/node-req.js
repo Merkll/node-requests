@@ -48,8 +48,9 @@ class NodeReq {
     const request = this.modifyRequest(req);
     const data = await this.executeMiddlewares(request, ...others);
     const next = others[1];
+    const tmpData = data || {};
     // console.log(next)
-    if (next && typeof next === 'function') return next(data);
+    if (next && typeof next === 'function' && (!tmpData.headersSent)) return next();
     return data;
   }
 
