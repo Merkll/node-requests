@@ -49,6 +49,18 @@ describe('NodeReq', () => {
   });
 
   describe('Router Middleware', () => {
+    it('Should call the net callback', async () => {
+      const req = {
+        queryStringParameters: {},
+        path: '/unknown',
+        pathParameters: {},
+        httpMethod: 'GET',
+        body: {},
+      };
+      NodeReq.register('express');
+      const data = await NodeReq.handleRequest(req, () => {}, () => 'hello');
+      expect(data).to.be.eql('hello');
+    });
     it('should add middlewares', async () => {
       NodeReq.Router()
         .use((req, done) => {

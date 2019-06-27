@@ -47,6 +47,9 @@ class NodeReq {
   async handleRequest(req, ...others) {
     const request = this.modifyRequest(req);
     const data = await this.executeMiddlewares(request, ...others);
+    const next = others[1];
+    // console.log(next)
+    if (next && typeof next === 'function') return next(data);
     return data;
   }
 
